@@ -1,7 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 const SearchForm = ({onSearch})=>{
     const [searchStr, setsearchStr] = useState('');
     const [searchOption, setsearchOption] = useState("shows")
+
+    useEffect(()=>{
+        console.log("component mounts")
+        return ()=>{
+            console.log("component unmounts")
+        }
+    }, [searchOption]);
     const onSearchInputChange = (ev)=>{
         setsearchStr(ev.target.value);
     }
@@ -17,7 +24,7 @@ const SearchForm = ({onSearch})=>{
         onSearch(options);
     }
     return (
-        <form action="" onSubmit={onSubmit}>
+        <form name = "" action="" onSubmit={onSubmit}>
          <input type="text" value={searchStr} onChange={onSearchInputChange} />
          <label>
              Shows
